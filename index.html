@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divya Pittu | Full Stack Developer</title>
+<meta name="description" content="Portfolio of Divya Pittu, ECE graduate and aspiring full stack developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --surface: #ffffff;
+    --ink: #14212e;
+    --muted: #55657a;
+    --line: #d6dde6;
+    --accent: #0b7a75;
+    --accent-dark: #075a56;
+    --hero-bg: #14212e;
+    --hero-ink: #f4f6f8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { font-family: "Source Sans 3", Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; font-size: 1.05rem; }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Arial, sans-serif; line-height: 1.15; }
+  a { color: var(--accent-dark); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
+  /* Navigation */
+  nav { position: sticky; top: 0; z-index: 10; background: var(--hero-bg); display: flex; justify-content: space-between; align-items: center; padding: 14px 6vw; }
+  nav .brand { font-family: "Bricolage Grotesque", Arial, sans-serif; font-weight: 700; color: var(--hero-ink); text-decoration: none; }
+  nav ul { display: flex; gap: 24px; list-style: none; }
+  nav ul a { color: #c9d4df; text-decoration: none; font-size: 0.98rem; }
+  nav ul a:hover { color: #fff; }
+  .menu-btn { display: none; background: none; border: 1px solid #5b6b7c; color: var(--hero-ink); padding: 6px 12px; border-radius: 6px; font: inherit; cursor: pointer; }
+
+  /* Hero */
+  .hero { background: var(--hero-bg); color: var(--hero-ink); padding: 12vh 6vw 14vh; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; right: -60px; top: 40px; width: 380px; height: 380px; opacity: 0.18; pointer-events: none;
+    background:
+      linear-gradient(var(--accent), var(--accent)) 0 60px / 220px 3px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 220px 60px / 3px 120px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 220px 180px / 160px 3px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 40px 220px / 3px 100px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 40px 320px / 200px 3px no-repeat; }
+  .hero p.hello { color: #8fd4cf; font-weight: 600; margin-bottom: 10px; }
+  .hero h1 { font-size: clamp(2.8rem, 9vw, 6rem); font-weight: 800; letter-spacing: -0.02em; }
+  .hero .role { font-size: clamp(1.2rem, 3vw, 1.7rem); margin-top: 14px; color: #dbe4ec; }
+  .hero .intro { max-width: 58ch; margin-top: 20px; color: #b9c6d3; }
+  .hero .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 2px solid var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+  .btn.ghost { color: var(--hero-ink); border-color: #5b6b7c; }
+  .btn.ghost:hover { border-color: #fff; }
+
+  /* Sections */
+  section { padding: 80px 6vw; }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  section h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 28px; }
+  section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  .about p { max-width: 68ch; margin-bottom: 14px; color: #2a3a4b; }
+  .facts { margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .fact { border-left: 4px solid var(--accent); padding: 4px 0 4px 14px; }
+  .fact strong { display: block; font-family: "Bricolage Grotesque", Arial, sans-serif; font-size: 1.3rem; }
+  .fact span { color: var(--muted); font-size: 0.95rem; }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; }
+  .skills li { background: var(--bg); border: 1px solid var(--line); padding: 8px 18px; border-radius: 999px; font-weight: 600; }
+  .skills li small { color: var(--muted); font-weight: 400; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; }
+  .project h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .project p { color: #2a3a4b; margin-bottom: 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin-bottom: 14px; }
+  .tags li { font-size: 0.85rem; background: #e3f1f0; color: var(--accent-dark); padding: 3px 10px; border-radius: 6px; font-weight: 600; }
+  .status { font-size: 0.9rem; color: var(--muted); }
+
+  /* Timeline (internships are a real sequence in time) */
+  .timeline { list-style: none; border-left: 3px solid var(--line); margin-left: 6px; }
+  .timeline li { position: relative; padding: 0 0 32px 28px; }
+  .timeline li::before { content: ""; position: absolute; left: -10px; top: 7px; width: 17px; height: 17px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); }
+  .timeline h3 { font-size: 1.2rem; }
+  .timeline .where { color: var(--muted); font-size: 0.95rem; margin: 2px 0 6px; }
+
+  .edu { display: grid; gap: 18px; }
+  .edu div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; border-bottom: 1px solid var(--line); padding-bottom: 14px; }
+  .edu strong { font-family: "Bricolage Grotesque", Arial, sans-serif; }
+  .edu span { color: var(--muted); }
+  .certs { margin-top: 28px; }
+  .certs h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .certs ul { margin-left: 20px; color: #2a3a4b; }
+
+  .contact p { max-width: 56ch; margin-bottom: 22px; color: #2a3a4b; }
+  .links { display: flex; flex-wrap: wrap; gap: 14px; }
+  form { margin-top: 36px; max-width: 520px; display: grid; gap: 14px; }
+  label { font-weight: 600; font-size: 0.95rem; }
+  input, textarea { width: 100%; padding: 11px 13px; border: 1px solid #aeb9c6; border-radius: 8px; font: inherit; background: #fff; margin-top: 4px; }
+  textarea { min-height: 120px; resize: vertical; }
+  form button { justify-self: start; cursor: pointer; font: inherit; font-weight: 600; background: var(--accent); color: #fff; border: 2px solid var(--accent); padding: 12px 26px; border-radius: 8px; }
+  form button:hover { background: var(--accent-dark); }
+
+  footer { background: var(--hero-bg); color: #9fb0c1; text-align: center; padding: 26px 6vw; font-size: 0.95rem; }
+
+  @media (max-width: 720px) {
+    .menu-btn { display: block; }
+    nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--hero-bg); padding: 8px 6vw 16px; }
+    nav ul.open { display: flex; }
+    nav ul a { display: block; padding: 10px 0; }
+    section { padding: 60px 6vw; }
+    .hero::after { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">Divya Pittu</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  <ul id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <p class="hello">Hi, I am</p>
+  <h1>Divya Pittu</h1>
+  <p class="role">Full Stack Developer (Fresher)</p>
+  <p class="intro">I am an Electronics and Communication Engineering graduate who builds web applications. I am looking for my first full stack developer role in Bangalore.</p>
+  <div class="actions">
+    <a class="btn primary" href="resume.pdf" download>Download resume</a>
+    <a class="btn ghost" href="#contact">Contact me</a>
+  </div>
+</header>
+
+<main>
+  <section class="about" id="about">
+    <div class="wrap">
+      <h2>About me</h2>
+      <p>I completed my B.Tech in Electronics and Communication Engineering in 2026. Along the way I moved towards software, and I now focus on full stack web development with Java.</p>
+      <p>I have worked as an Application Developer intern (Web and Mobile) and completed web development and full stack internships. I learn by building, and I am looking for a team where I can keep growing.</p>
+      <div class="facts">
+        <div class="fact"><strong>B.Tech ECE</strong><span>2022 to 2026</span></div>
+        <div class="fact"><strong>8.5 CGPA</strong><span>out of 10</span></div>
+        <div class="fact"><strong>Bangalore, Karnataka</strong><span>Open to full stack roles</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>Java <small>(learning)</small></li>
+        <li>HTML</li>
+        <li>MATLAB</li>
+        <li>Simulink</li>
+      </ul>
+      <!-- Add more skills as you learn them, for example: <li>CSS</li> <li>JavaScript</li> -->
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>Food Delivery Application</h3>
+          <p>A full stack app where users browse restaurants, add dishes to a cart and place orders.</p>
+          <ul class="tags"><li>React</li><li>Spring Boot</li><li>Hibernate</li><li>MySQL</li></ul>
+          <p class="status">In progress. Code and live link will be added here.</p>
+        </article>
+        <!-- Copy the whole <article> block above to add another project.
+             When a project is finished, add: <a href="YOUR_GITHUB_REPO_LINK">View code</a> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li>
+          <h3>Full Stack Development Internship</h3>
+          <p class="where">TAP Academy | Aug 2026</p>
+        </li>
+        <li>
+          <h3>Application Developer Intern (Web and Mobile)</h3>
+          <p class="where">Rooman Technologies | May to July 2025</p>
+        </li>
+        <li>
+          <h3>Web Development Internship</h3>
+          <p class="where">Academor | 2024</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu">
+        <div><strong>B.Tech, Electronics and Communication Engineering</strong><span>Sri Venkateswara Institute of Technology | 2022 to 2026 | CGPA 8.5/10</span></div>
+        <div><strong>Intermediate</strong><span>CGPA 6.2/10</span></div>
+        <div><strong>10th class (SSC)</strong><span>CGPA 9.8/10</span></div>
+      </div>
+      <div class="certs">
+        <h3>Certifications</h3>
+        <ul>
+          <li>Webinar participation, Elewayte (22 June 2024)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt contact" id="contact">
+    <div class="wrap">
+      <h2>Contact me</h2>
+      <p>I am open to full stack developer roles. Send me a message or reach me through any link below.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:YOUR_EMAIL@gmail.com">Email me</a>
+        <a class="btn ghost" style="color:var(--ink);border-color:var(--line)" href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" style="color:var(--ink);border-color:var(--line)" href="https://github.com/divyapittu2005-collab" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <!-- Contact form: sign up free at formspree.io, create a form, and replace YOUR_FORM_ID below -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Your name <input type="text" name="name" required></label>
+        <label>Your email <input type="email" name="email" required></label>
+        <label>Message <textarea name="message" required></textarea></label>
+        <button type="submit">Send message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; <span id="year"></span> Divya Pittu</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  var btn = document.getElementById("menuBtn");
+  var links = document.getElementById("navLinks");
+  btn.addEventListener("click", function () {
+    var open = links.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+  });
+  links.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") { links.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
+  });
+</script>
+</body>
+</html>
